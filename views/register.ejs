@@ -1,0 +1,45 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+<nav>
+  <img src="../images/logo.png" width="120" height="60">
+  <ul>
+    <li class="header">ZEEBOK POLYCLINIC</li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/login">Login</a></li>
+  </ul>
+</nav>
+<!-- <center> -->
+	<div class="user-detail">
+		<h2><i class="fa fa-registered" aria-hidden="true"></i>&nbsp;Registration</h2>
+		<hr>
+        <% if (success) {%>
+        <div style="text-align:center;font-size:medium;font-weight:bold;color: green;">
+            <%=success%>
+        </div>
+        <% } %>
+        <% if (error) {%>
+        <div style="text-align:center;font-size:medium;font-weight:bold;color: red;">
+            <%=error%>
+        </div>
+        <% } %>
+		<form id="form1" action="/register/add" method="POST" autocomplete="off" enctype="multipart/form-data" onsubmit="validateRegForm()">
+		<input type="text" placeholder="Enter Full Name" name="fName" value="" class="form-control">
+		
+		<input type="email" placeholder="Enter Email Address" name="email" value="" class="form-control">
+        
+    <input type="tel" placeholder="Enter Phone No" name="phno" value="" class="form-control">
+		
+		<input type="text" placeholder="Enter Address" name="address" value=""class="form-control">
+        
+		<input type="password" placeholder="Enter Password" name="pwd" class="form-control">
+		
+		<input type="file" placeholder="Choose Image" name="photo" accept="" style="background: none;"class="form-control"/>
+		
+		<center><button type="submit">Register</button></center>
+		</form>
+		</div>
+<!-- </center> -->
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

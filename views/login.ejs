@@ -1,0 +1,40 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+<nav>
+    <img src="../images/logo.png" width="120" height="60">
+    <ul>
+      <li class="header">ZEEBOK POLYCLINIC</li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/register">Register</a></li>
+    </ul>
+</nav>
+  <center>
+        <div class="login-detail">
+            <h2><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</h2>
+            <hr>
+            <% if (success) {%>
+              <div style="text-align:center;font-size:medium;font-weight:bold;color: green;">
+                  <%=success%>
+              </div>
+              <% } %>
+              <% if (error) {%>
+              <div style="text-align:center;font-size:medium;font-weight:bold;color: red;">
+                  <%=error%>
+              </div>
+              <% } %>
+            <form action="/login" method="POST" autocomplete="off">
+            <input type="text" placeholder="Enter Email Address Or Phone No" name="emailphno" class="form-control">
+            
+            <input type="password" placeholder="Enter Password" name="pwd" class="form-control">
+            
+            <button type="submit">Login</button>
+            </form>
+       
+        </div>
+  </center>
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

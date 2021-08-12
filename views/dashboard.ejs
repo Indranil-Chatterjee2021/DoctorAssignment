@@ -1,0 +1,107 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+<nav>
+    <img src="../images/logo.png" width="120" height="60">
+    <ul>
+        <li class="header" style="margin-right: 425px;">ZEEBOK POLYCLINIC</li>
+           <li><select onchange="location=this.value;" class="selectBox">
+            <% if (User_logIn) {%>   
+            <option hidden><%=User_logIn%></option>
+            <% } %>
+            <option value="/logout">LogOut</option>
+            </select>
+        </li>
+    </ul>
+</nav>
+<div class="content">
+    <div class="sidenav">
+      <a href="#">Book Appointment</a>
+      <a href="#">History</a>
+      <a href="changePassword">Change Password</a>
+    </div>
+    <center>
+        <h3 style="text-align: center;color:saddlebrown;font-weight: bold;">Our Doctors List</h3> 
+    </center>
+    
+    <form action="/dashboard/search" method="post" style="padding-left: 21%;">
+        <div class="left" >
+            <label for="username">By Category(Specialist In)</label>
+            <input name="cate" size="30" type="text" class="form-control"/>
+          </div>
+          
+          <div class="left">
+            <label for="name">By Fees</label>
+            <input name="fee" size="30" type="text" class="form-control"/>
+          </div>
+          <div class="left">
+            <button type="submit">Search</button>
+          </div>
+          <!-- <div class="clear">&nbsp;</div> -->
+      </form>
+    <table class="docls" style="width: 65%" id="doctors">
+        <thead>
+            <tr>
+              <th>#</th>
+              <th style="display:none;">DOC ID</th>
+              <th>Doctor</th>
+              <th>RegNo</th>
+              <th>Specialist In</th>
+              <th>Visit Time</th>
+              <th>Fees</th>
+              <th>Availability</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i < doctors.length; i++) { %>
+            <tr>
+              <td><%= i + 1 %></td>  
+              <td style="display:none;"><%= doctors[i].DID %></td> 
+              <td><%= doctors[i].Dname %></td>
+              <td><%= doctors[i].DregNo %></td>
+              <td><%= doctors[i].Dcategory %></td>
+              <td><%= doctors[i].Vtimings %></td>
+              <td><%= doctors[i].Fees %></td>
+              <td><%= doctors[i].isPresent %></td>
+              <td><a style="color:indigo" href="javascript:void(0)">Book Appointment</a></td>
+            </tr>
+            <% } %>
+          </tbody>
+    </table> 
+    <center>
+        <div>
+    <% if (pages > 0) { %>
+        
+      <ul class="pagination text-center">
+          <% if (current === 1) { %>
+              <li class="disabled"><a>First</a></li>
+          <% } else { %>
+              <li><a href="?page=1">First</a></li>
+          <% } %>
+          <% var i = (Number(current) > 5 ? Number(current) - 3 : 1) %>
+          <% if (i !== 1) { %>
+              <li class="disabled"><a>...</a></li>
+          <% } %>
+          <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+              <% if (i == current) { %>
+                  <li class="active"><a><%= i %></a></li>
+              <% } else { %>
+                  <li><a href="?page=<%= i %>"><%= i %></a></li>
+              <% } %>
+              <% if (i == Number(current) + 4 && i < pages) { %>
+                  <li class="disabled"><a>...</a></li>
+              <% } %>
+          <% } %>
+          <% if (current == pages) { %>
+              <li class="disabled"><a>Last</a></li>
+          <% } else { %>
+              <li><a href="?page=<%= pages %>">Last</a></li>
+          <% } %>
+      </ul>
+  <% } %> 
+</center>
+</div> <!--End of Content DIV-->
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->
